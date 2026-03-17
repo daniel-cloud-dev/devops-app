@@ -1,0 +1,23 @@
+name: CI - Docker Build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar repositório
+        uses: actions/checkout@v4
+
+      - name: Build da imagem Docker
+        run: docker build -t devops-app .
+
+      - name: Rodar container (teste)
+        run: docker run -d -p 3000:3000 devops-app
+
+      - name: Ver logs
+        run: docker logs $(docker ps -q)
