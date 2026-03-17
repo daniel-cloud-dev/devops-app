@@ -11,7 +11,7 @@ FROM node:18 AS runner
 
 WORKDIR /app
 
-COPY --from=builder /app ./
+COPY --from=builder /app ./app
 
 USER node
 EXPOSE 3000
