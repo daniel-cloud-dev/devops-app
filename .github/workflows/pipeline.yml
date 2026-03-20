@@ -26,7 +26,7 @@ jobs:
         run: docker push ${{ secrets.DOCKER_USERNAME }}/test-pipeline:latest
 
       - name: Rodar container (teste)
-        run: docker run -d -p 3000:3000 test-pipeline:latest
+        run: docker run -d -p 3000:3000 ${{ secrets.DOCKER_USERNAME }}/test-pipeline:latest
 
       - name: Ver logs
         run: docker logs $(docker ps -q)
