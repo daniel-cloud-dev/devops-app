@@ -16,17 +16,17 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Clonar repositório
+      - name: Clone repositorio
         uses: actions/checkout@v4    
 
       - name: Build da imagem
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/teste-pipeline:latest ./api
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/test-pipeline:latest ./api
 
       - name: Push da imagem
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/teste-pipeline:latest
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/test-pipeline:latest
 
       - name: Rodar container (teste)
-        run: docker run -d -p 3000:3000 teste-pipeline/latest
+        run: docker run -d -p 3000:3000 test-pipeline:latest
 
       - name: Ver logs
         run: docker logs $(docker ps -q)
